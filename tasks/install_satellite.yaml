@@ -24,7 +24,7 @@
 - template: src=answerfile.j2 dest=/tmp/answerfile.txt
 
 - command: katello-configure --answer-file=/tmp/answerfile.txt 
-     creates=/usr/bin/katello
+     creates=/var/log/katello/katello-configure/main.log
 
 # TODO:not useful since a provider needs to be created before importing manifest
 #- name: download manifest
