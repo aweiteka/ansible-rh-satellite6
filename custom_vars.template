@@ -1,0 +1,25 @@
+---
+# private vars
+
+rhn_user: admin@example.com
+rhn_pass: my_rhn_passwd
+rhn_pool: 123456789
+manifest_url: http://path/to/my/manifest.zip
+
+# answerfile vars
+admin_user: admin
+katello_pass: password
+admin_email: admin@example.com
+katello_org: Acme Corp
+ldap_host: ldap.host.example.com
+ldap_port: 389
+ldap_type: free_ipa
+ldap_encrypt: start_tls
+ldap_users_basedn: dc=ldap,dc=host,dc=example,dc=com
+ldap_groups_basedn: cn=groups,cn=accounts,dc=ldap,dc=host,dc=example,dc=com
+ldap_roles: true
+ldap_anon_queries: false
+ldap_service_user: ldap_service_username
+ldap_service_pass: ldap_pass
+ldap_ad_domain:
+ldap_validation: true

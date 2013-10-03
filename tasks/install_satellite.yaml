@@ -1,0 +1,32 @@
+---
+# install satellite via answerfile
+
+# not subscribing. problem with module or "pool" method?
+#- redhat_subscription: state=present pool={{ rhn_pool }}
+#     username={{ rhn_user }} password={{ rhn_pass }}
+
+- command: yum update -y
+
+- command: yum-config-manager --enable {{ satellite_repo }}
+
+- command: yum install -y {{ satellite_pkg }}
+
+- service: name=ntpd state=started enabled=yes
+
+- command: setenforce 1
+
+- copy: src=iptables dest=/etc/sysconfig/iptables mode=0600
+
+- command: restorecon -v /etc/sysconfig/iptables
+
+- service: name=iptables state=started enabled=yes
+
+- template: src=answerfile.j2 dest=/tmp/answerfile.txt
+
+- command: katello-configure --answer-file=/tmp/answerfile.txt 
+     creates=/usr/bin/katello
+
+# TODO:not useful since a provider needs to be created before importing manifest
+#- name: download manifest
+#  get_url: url={{ manifest_url }} dest=/tmp/manifest.zip force=yes
+

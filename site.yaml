@@ -1,0 +1,18 @@
+---
+# base playbook for satellite server v6
+
+- hosts: satellite
+
+  vars:
+     satellite_repo: rhel-server-6-satellite-6-mdp-1-rpms
+     satellite_pkg: katello-all
+     deployment_type: katello
+     auth_method: ldap
+     katello_provider: RH CDN
+
+  vars_files:
+     - custom_vars.yaml
+
+  tasks:
+  - include: tasks/install_satellite.yaml
+
